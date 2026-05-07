@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fer Santana</title>
+  <title>Fer Shop </title>
   <!-- Archivo CSS externo -->
   <link rel="stylesheet" href="style.css">
 
@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 
   <div class="logo">
     <img src="images/logo.png" alt="Fer Santana Logo">
-    <span>Fer Santana</span>
+    <span>Fernanda de Cisneros</span>
   </div>
 
   <!-- BOTON MENU -->
@@ -38,7 +39,9 @@
   </ul>
 
 </nav>
-
+<div class="top-banner">
+  🔥 PREGUNTA POR NUESTRAS PROMOCIONES 🔥
+</div>
     <!-- HERO -->
     <div class="hero">
       <div class="hero-text">
@@ -53,6 +56,70 @@
       </div>
     </div>
   </header>
+  <!-- BENEFICIOS -->
+<section class="carousel">
+
+  <div class="slides">
+
+    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop">
+
+    <img src="https://images.unsplash.com/photo-1506629905607-d9c297d0fbc9?q=80&w=1600&auto=format&fit=crop">
+
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+
+  </div>
+
+</section>
+<section class="new-collection">
+
+  <div class="new-left">
+    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1400&auto=format&fit=crop">
+  </div>
+
+  <div class="new-right">
+
+    <span class="tag">NUEVA COLECCIÓN 2026</span>
+
+    <h2>
+      Outfit deportivo premium para mujeres con estilo
+    </h2>
+
+    <p>
+      Descubre prendas modernas, cómodas y elegantes
+      diseñadas para resaltar tu mejor versión.
+    </p>
+
+    <a href="#ropa" class="btn">
+      Comprar ahora
+    </a>
+
+  </div>
+
+</section>
+<section class="benefits">
+
+  <h2>¿Qué te ofrecemos hoy?</h2>
+
+  <div class="benefits-grid">
+
+    <div class="benefit-card">
+      <h3>🔥 Productos en Tendencia</h3>
+      <p>Lo más vendido en ropa deportiva, maquillaje y suplementos.</p>
+    </div>
+
+    <div class="benefit-card">
+      <h3>🚚 Envíos Rápidos</h3>
+      <p>Recibe tus productos hasta la puerta de tu casa.</p>
+    </div>
+
+    <div class="benefit-card">
+      <h3>💖 Calidad Premium</h3>
+      <p>Seleccionamos productos modernos y de alta calidad.</p>
+    </div>
+
+  </div>
+
+</section>
 
   <!-- ROPA -->
   <section id="ropa">
@@ -185,10 +252,63 @@
     </div>
 
   </section>
+<section class="testimonials">
 
+  <div class="title">
+    <h2>Lo que dicen nuestras clientas</h2>
+    <p>Opiniones reales de nuestras compradoras.</p>
+  </div>
+
+  <div class="testimonial-grid">
+
+    <div class="testimonial-card" data-aos="fade-up">
+
+      <img src="https://randomuser.me/api/portraits/women/44.jpg">
+
+      <h3>Mariana G.</h3>
+
+      <p>
+        “La calidad está increíble, volveré a comprar.”
+      </p>
+
+      <span>⭐⭐⭐⭐⭐</span>
+
+    </div>
+
+    <div class="testimonial-card" data-aos="fade-up">
+
+      <img src="https://randomuser.me/api/portraits/women/68.jpg">
+
+      <h3>Fernanda R.</h3>
+
+      <p>
+        “El maquillaje llegó súper rápido y hermoso.”
+      </p>
+
+      <span>⭐⭐⭐⭐⭐</span>
+
+    </div>
+
+    <div class="testimonial-card" data-aos="fade-up">
+
+      <img src="https://randomuser.me/api/portraits/women/12.jpg">
+
+      <h3>Daniela M.</h3>
+
+      <p>
+        “Me encantaron los leggings, súper cómodos.”
+      </p>
+
+      <span>⭐⭐⭐⭐⭐</span>
+
+    </div>
+
+  </div>
+
+</section>
   <!-- FOOTER -->
   <footer>
-    <h3>Fer Santana</h3>
+    <h3>Fernanda Santana</h3>
     <p>Moda • Fitness • Beauty</p>
   </footer>
   <script>
@@ -199,6 +319,88 @@
     menu.classList.toggle("active");
   });
 </script>
+<a href="https://wa.me/523412408519" class="whatsapp" target="_blank">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+</a>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+<script>
+AOS.init({
+  duration:1000,
+  once:true
+});
+</script>
+<script>
+
+const productos = [
+
+  {
+    nombre:"Leggings Pro",
+    precio:"$899 MXN",
+    imagen:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+  },
+
+  {
+    nombre:"Top Fitness",
+    precio:"$699 MXN",
+    imagen:"https://images.unsplash.com/photo-1506629905607-d9c297d0fbc9?q=80&w=1200&auto=format&fit=crop"
+  },
+
+  {
+    nombre:"Sport Outfit",
+    precio:"$1,299 MXN",
+    imagen:"https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop"
+  }
+
+];
+
+const cards = document.querySelector("#ropa .cards");
+
+cards.innerHTML = "";
+
+productos.forEach(producto => {
+
+  cards.innerHTML += `
+
+    <div class="card" data-aos="zoom-in">
+
+      <img src="${producto.imagen}">
+
+      <div class="card-content">
+
+        <h3>${producto.nombre}</h3>
+
+        <p>Moda deportiva premium.</p>
+
+        <span>${producto.precio}</span>
+
+      </div>
+
+    </div>
+
+  `;
+
+});
+
+</script>
+<script>
+
+window.addEventListener("scroll", () => {
+
+  const nav = document.querySelector("nav");
+
+  if(window.scrollY > 50){
+
+    nav.classList.add("nav-scroll");
+
+  }else{
+
+    nav.classList.remove("nav-scroll");
+
+  }
+
+});
+
+</script>
 </body>
 </html>
