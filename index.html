@@ -10,12 +10,18 @@
   <!-- Fuente -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
 </head>
 
 <body>
+  <div class="loader">
+
+  <div class="loader-logo">
+    Fer Shop
+  </div>
+
+</div>
 
   <!-- NAVBAR -->
   <header>
@@ -37,7 +43,9 @@
     <li><a href="#suplementos">Suplementos</a></li>
     <li><a href="#maquillaje">Maquillaje</a></li>
   </ul>
-
+<button id="darkModeBtn" class="dark-btn">
+  🌙
+</button>
 </nav>
 <div class="top-banner">
   🔥 PREGUNTA POR NUESTRAS PROMOCIONES 🔥
@@ -58,14 +66,29 @@
   </header>
   <!-- BENEFICIOS -->
 <section class="carousel">
-
+  
   <div class="slides">
 
-    <img src="https://images.unsplash.com/photo-1517841905240-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop">
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+    </div>
 
-    <img src="https://images.unsplash.com/photo-1517841905240-d9c297d0fbc9?q=80&w=1600&auto=format&fit=crop">
+    <div class="slide">
+     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+    </div>
 
-    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+    </div>
+     <div class="slide">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+    </div>
+     <div class="slide">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+    </div>
+     <div class="slide">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
+    </div>
 
   </div>
 
@@ -319,6 +342,9 @@
     menu.classList.toggle("active");
   });
 </script>
+<span class="tooltip">
+  Contáctanos
+</span>
 <a href="https://wa.me/523412408519" class="whatsapp" target="_blank">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
@@ -397,6 +423,40 @@ window.addEventListener("scroll", () => {
 
     nav.classList.remove("nav-scroll");
 
+  }
+
+});
+ 
+</script>
+<script>
+
+window.addEventListener("load",()=>{
+
+  const loader=document.querySelector(".loader");
+
+  loader.style.opacity="0";
+
+  setTimeout(()=>{
+
+    loader.style.display="none";
+
+  },1000);
+
+});
+
+</script>
+<script>
+
+const darkBtn = document.getElementById("darkModeBtn");
+
+darkBtn.addEventListener("click",()=>{
+
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    darkBtn.innerHTML="☀️";
+  }else{
+    darkBtn.innerHTML="🌙";
   }
 
 });
