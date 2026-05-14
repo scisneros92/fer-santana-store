@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Fuente -->
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -147,46 +148,16 @@
   <!-- ROPA -->
   <section id="ropa">
 
-    <div class="title">
-      <h2>Ropa Deportiva</h2>
-      <p>Diseños modernos para tu mejor versión.</p>
-    </div>
+  <div class="title">
+    <h2>Ropa Deportiva</h2>
+    <p>Diseños modernos para tu mejor versión.</p>
+  </div>
 
-    <div class="cards">
+  <div class="cards" id="contenedor-productos">
+    <!-- Aquí se cargarán los productos -->
+  </div>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1518611012118-fb4c6c68a2b7?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Leggings Premium</h3>
-          <p>Comodidad y estilo para entrenar.</p>
-          <span>$799 MXN</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Top Fitness</h3>
-          <p>Material transpirable y ajuste perfecto.</p>
-          <span>$599 MXN</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Tenis Sport</h3>
-          <p>Moda urbana y rendimiento.</p>
-          <span>$1,999 MXN</span>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
+</section>
 
   <!-- SUPLEMENTOS -->
   <section id="suplementos">
@@ -334,6 +305,7 @@
     <h3> Fernanda Santana ♥</h3>
     <p>Moda • Fitness • Beauty</p>
   </footer>
+  
   <script>
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("menu");
@@ -462,5 +434,113 @@ darkBtn.addEventListener("click",()=>{
 });
 
 </script>
+<script>
+const SUPABASE_URL = "https://rptnbxyerjcwzxflijpm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_6ik7MsO_dx2Jua_lZH5lPg_yl3r4pt_";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function cargarProductos() {
+
+  const { data, error } = await supabaseClient
+    .from("productos")
+    .select("*")
+    .eq("activo", true);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const contenedor = document.getElementById("contenedor-productos");
+
+  contenedor.innerHTML = "";
+
+ data.forEach((producto, index) => {
+
+  const precio = producto.en_oferta && producto.precio_oferta
+    ? producto.precio_oferta
+    : producto.costo;
+
+  const imagenes = producto.imagenes?.length
+    ? producto.imagenes
+    : ["https://via.placeholder.com/300x400?text=Sin+Imagen"];
+
+  const imagenesHTML = imagenes.map((img, i) => `
+  
+    <img 
+      src="${img}" 
+      class="slide ${i === 0 ? 'activo' : ''}"
+    >
+
+  `).join("");
+
+  contenedor.innerHTML += `
+  
+    <div class="card">
+
+      <div class="slider" id="slider-${index}">
+        
+        ${imagenesHTML}
+
+        ${
+          imagenes.length > 1
+          ? `
+            <button class="prev" onclick="moverSlide(${index}, -1)">❮</button>
+            <button class="next" onclick="moverSlide(${index}, 1)">❯</button>
+          `
+          : ""
+        }
+
+      </div>
+
+      <div class="card-content">
+        <h3>${producto.nombre}</h3>
+
+        <p>${producto.descripcion || "Sin descripción"}</p>
+
+        <span>$${precio} MXN</span>
+      </div>
+
+    </div>
+
+  `;
+});
+}
+function moverSlide(index, direccion){
+
+  const slider = document.getElementById(`slider-${index}`);
+
+  const slides = slider.querySelectorAll(".slide");
+
+  let actual = 0;
+
+  slides.forEach((slide, i) => {
+    if(slide.classList.contains("activo")){
+      actual = i;
+    }
+  });
+
+  slides[actual].classList.remove("activo");
+
+  actual += direccion;
+
+  if(actual >= slides.length){
+    actual = 0;
+  }
+
+  if(actual < 0){
+    actual = slides.length - 1;
+  }
+
+  slides[actual].classList.add("activo");
+}
+
+cargarProductos();
+</script>
+
 </body>
 </html>

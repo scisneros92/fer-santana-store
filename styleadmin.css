@@ -1,0 +1,258 @@
+/* ===== BODY ===== */
+body{
+    background: #f5f5f7;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+    background: linear-gradient(90deg,#ff7eb3,#ff4f81) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+
+.navbar-brand{
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+/* ===== BOTONES ===== */
+.btn-primary{
+    background: linear-gradient(135deg,#ff7eb3,#ff4f81);
+    border: none;
+    border-radius: 14px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-primary:hover{
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,#ff4f81,#ff2f6d);
+}
+
+.btn-danger{
+    border-radius: 10px;
+}
+
+/* ===== MODAL ===== */
+.modal-content{
+    border: none;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+.modal-header{
+    background: linear-gradient(90deg,#ff7eb3,#ff4f81) !important;
+    border: none;
+}
+
+.modal-header h5{
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ===== CARD FORM ===== */
+.card{
+    border: none;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+/* ===== INPUTS ===== */
+.form-control{
+    border-radius: 14px;
+    border: 1px solid #ddd;
+    padding: 12px;
+    transition: .3s;
+    background: #fafafa;
+}
+
+.form-control:focus{
+    border-color: #ff7eb3;
+    box-shadow: 0 0 0 0.2rem rgba(255,126,179,.2);
+    background: white;
+}
+
+/* ===== PREVIEW ===== */
+#previewImg{
+    border: 4px solid #ffd1e1;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+/* ===== TABLA ===== */
+.table{
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+}
+
+.table thead{
+    background: #ff7eb3;
+    color: white;
+}
+
+.table-dark{
+    --bs-table-bg: white;
+    --bs-table-striped-bg: #fafafa;
+    --bs-table-hover-bg: #ffe6ef;
+    color: #444;
+}
+
+.table td,
+.table th{
+    vertical-align: middle;
+    padding: 15px;
+}
+
+/* ===== IMÁGENES ===== */
+.table img{
+    border-radius: 10px;
+    border: 2px solid #ffd1e1;
+}
+
+/* ===== SCROLL ===== */
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #ff7eb3;
+    border-radius: 10px;
+}
+
+/* ===== ANIMACIÓN ===== */
+.modal.fade .modal-dialog{
+    transform: scale(.9);
+    transition: .3s;
+}
+
+.modal.show .modal-dialog{
+    transform: scale(1);
+}
+/* ===== CARD PRODUCTO ===== */
+.product-card{
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    transition: .3s;
+    background: white;
+}
+
+.product-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255,79,129,.25);
+}
+
+.product-card img{
+    height: 220px;
+    object-fit: cover;
+}
+
+/* ===== PRECIO ===== */
+.price{
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff4f81;
+}
+
+/* ===== BADGE ===== */
+.bg-pink{
+    background: #ff4f81 !important;
+}
+
+/* ===== BODY FONDO ===== */
+body{
+    background: #f6f6f9;
+}
+/* ===== CATEGORY CARDS ===== */
+.category-card{
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    height: 220px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    transition: .3s;
+}
+
+.category-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s;
+}
+
+/* overlay */
+.category-card .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(255,79,129,.8),
+        rgba(0,0,0,.1)
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+/* hover efecto */
+.category-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(255,79,129,.3);
+}
+
+.category-card:hover img{
+    transform: scale(1.1);
+}
+.hidden {
+    display: none !important;
+}
+.category-card {
+    height: 220px;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+/* overlay oscuro */
+.category-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+/* texto arriba del overlay */
+.category-card h3 {
+    position: relative;
+    z-index: 2;
+}
+.ropa {
+    background: url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438") center/cover;
+}
+
+.maquillaje {
+    background: url("https://images.unsplash.com/photo-1596462502278-27bfdc403348") center/cover;
+}
+
+.suplementos {
+    background: url("https://images.unsplash.com/photo-1579722821273-0f6c7d44362f") center/cover;
+}

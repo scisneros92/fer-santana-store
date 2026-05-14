@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Administración</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styleadmin.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <span class="navbar-brand">Administración </span>
+        </div>
+    </nav>
+
+    <!-- CATEGORÍAS -->
+    <div class="container mt-4">
+
+        <div class="row g-4">
+
+           <!-- ROPA -->
+<div class="col-md-4">
+    <div class="category-card ropa"
+        onclick="abrirCategoria(1,'Ropa')"
+        data-bs-toggle="modal"
+        data-bs-target="#modalProductos">
+        <h3>✨ Ropa</h3>
+    </div>
+</div>
+
+<!-- MAQUILLAJE -->
+<div class="col-md-4">
+    <div class="category-card maquillaje"
+        onclick="abrirCategoria(2,'Maquillaje')"
+        data-bs-toggle="modal"
+        data-bs-target="#modalProductos">
+        <h3>💄 Maquillaje</h3>
+    </div>
+</div>
+
+<!-- SUPLEMENTOS -->
+<div class="col-md-4">
+    <div class="category-card suplementos"
+        onclick="abrirCategoria(3,'Suplementos')"
+        data-bs-toggle="modal"
+        data-bs-target="#modalProductos">
+        <h3>💊 Suplementos</h3>
+    </div>
+</div>
+
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="modalProductos">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Productos</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+<!-- FORM -->
+<div class="card p-4 mb-4">
+
+    <!-- GENERAL (TODAS LAS CATEGORÍAS) -->
+    <input id="nombre" class="form-control mb-2 campo-general" placeholder="Nombre">
+
+    <textarea id="descripcion" class="form-control mb-2 campo-general" placeholder="Descripción"></textarea>
+
+    <input id="precio" type="number" class="form-control mb-2 campo-general" placeholder="Costo">
+
+    <input id="stock" type="number" class="form-control mb-2 campo-general" placeholder="Stock">
+
+    <!-- SOLO MAQUILLAJE -->
+    <input id="color" class="form-control mb-2 campo-maquillaje" placeholder="Color">
+
+    <!-- SOLO ROPA -->
+    <input id="talla" class="form-control mb-2 campo-ropa" placeholder="Talla">
+
+    <input id="genero" class="form-control mb-2 campo-ropa" placeholder="Género">
+
+    <!-- SOLO ROPA Y MAQUILLAJE -->
+    <input type="file" id="imagenes" class="form-control mb-2 campo-imagen" multiple accept="image/*">
+
+    <!-- PREVIEW -->
+    <div
+    id="previewContainer"
+    class="d-flex flex-wrap gap-2 mb-3">
+</div>
+
+    <button class="btn btn-primary" onclick="guardarProducto()">
+        Guardar
+    </button>
+
+</div>
+
+                    <!-- PRODUCTOS -->
+                    <div id="productosContainer" class="row g-3"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+    <script>
+
+        const supabaseUrl = 'https://rptnbxyerjcwzxflijpm.supabase.co';
+        const supabaseKey = 'sb_publishable_6ik7MsO_dx2Jua_lZH5lPg_yl3r4pt_';
+        window.supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        /* VERIFICAR LOGIN */
+async function verificarSesion(){
+
+    const { data } =
+    await window.supabaseClient.auth.getSession();
+
+    if(!data.session){
+        window.location.href = "login.html";
+    }
+
+}
+
+verificarSesion();
+
+/* VARIABLES */
+let filesGlobal = [];
+let categoriaActual = null;
+let productoEditandoId = null;
+        
+        /* CATEGORÍA */
+function abrirCategoria(id, nombre) {
+    categoriaActual = id;
+    document.querySelector('.modal-title').innerText = nombre;
+
+    ajustarFormulario(); // 👈 CLAVE
+
+    cargarProductos();
+}
+function ajustarFormulario() {
+
+    // reset: mostrar todo
+    document.querySelectorAll('.campo-general, .campo-ropa, .campo-maquillaje, .campo-imagen')
+        .forEach(el => el.classList.remove('hidden'));
+
+    // ROPA (todo visible)
+    if (categoriaActual == 1) {
+        return;
+    }
+
+    // MAQUILLAJE
+    if (categoriaActual == 2) {
+
+        document.querySelectorAll('.campo-ropa')
+            .forEach(el => el.classList.add('hidden'));
+
+        return;
+    }
+
+    // SUPLEMENTOS
+    if (categoriaActual == 3) {
+
+        document.querySelectorAll('.campo-ropa, .campo-maquillaje')
+            .forEach(el => el.classList.add('hidden'));
+    }
+}
+
+        /* PREVIEW */
+     document.getElementById('imagenes')
+.addEventListener('change', e => {
+
+    const files = [...e.target.files];
+
+     if(files.length > 3){
+
+    alert("Máximo 3 imágenes");
+
+    e.target.value = '';
+
+    return;
+}
+
+    filesGlobal = files;
+
+    const container =
+        document.getElementById('previewContainer');
+
+    container.innerHTML = '';
+
+    files.forEach(file => {
+
+        const reader = new FileReader();
+
+        reader.onload = ev => {
+
+            container.innerHTML += `
+                <img
+                    src="${ev.target.result}"
+                    style="
+                        width:100px;
+                        height:100px;
+                        object-fit:cover;
+                        border-radius:10px;
+                    ">
+            `;
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+});
+        async function subirMultiplesImagenes(files){
+
+    let urls = [];
+
+    for(const file of files){
+
+        const imgOpt = await optimizarImagen(file);
+
+        const name =
+        `prod_${Date.now()}_${Math.random()}.webp`;
+
+        await window.supabaseClient.storage
+            .from('productos')
+            .upload(name, imgOpt);
+
+        const { data } =
+            window.supabaseClient.storage
+            .from('productos')
+            .getPublicUrl(name);
+
+        urls.push(data.publicUrl);
+    }
+
+    return urls;
+}
+        /* OPTIMIZAR IMAGEN */
+        async function optimizarImagen(file) {
+            return new Promise(resolve => {
+                const img = new Image();
+                const reader = new FileReader();
+
+                reader.onload = e => img.src = e.target.result;
+
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 400;
+                    canvas.height = 400;
+
+                    const ctx = canvas.getContext('2d');
+
+                    const ratio = Math.max(400 / img.width, 400 / img.height);
+                    const w = img.width * ratio;
+                    const h = img.height * ratio;
+
+                    ctx.fillStyle = "#fff";
+                    ctx.fillRect(0, 0, 400, 400);
+                    ctx.drawImage(img, (400 - w) / 2, (400 - h) / 2, w, h);
+
+                    canvas.toBlob(b => resolve(b), 'image/webp', 0.8);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+       
+async function guardarProducto() {
+
+    // 1. leer inputs
+    const nombre = document.getElementById('nombre').value;
+    const descripcion = document.getElementById('descripcion').value;
+    const costo = document.getElementById('precio').value;
+    const stock = document.getElementById('stock').value;
+
+    const talla = document.getElementById('talla').value;
+    const color = document.getElementById('color').value;
+    const genero = document.getElementById('genero').value;
+
+    // 🔥 AQUÍ VA LO NUEVO (imagen)
+ let imagenes = [];
+
+// SI ESTÁ EDITANDO
+if(productoEditandoId){
+
+    // obtener producto actual
+    const { data: productoActual } =
+    await window.supabaseClient
+        .from('productos')
+        .select('imagenes')
+        .eq('id', productoEditandoId)
+        .single();
+
+    // conservar imágenes anteriores
+    imagenes = productoActual.imagenes || [];
+}
+
+// SI SUBIÓ NUEVAS IMÁGENES
+if(filesGlobal.length > 0){
+
+    imagenes =
+    await subirMultiplesImagenes(filesGlobal);
+}
+
+    // 2. payload
+    let payload = {
+        nombre,
+        descripcion,
+        costo,
+        stock,
+        categoria_id: categoriaActual,
+        en_oferta: false
+    };
+
+    // imagen solo si existe
+    payload.imagenes = imagenes;
+
+    // ROPA
+    if (categoriaActual == 1) {
+        payload.talla = talla;
+        payload.color = color;
+        payload.genero = genero;
+    }
+
+    // MAQUILLAJE
+    if (categoriaActual == 2) {
+        payload.color = color;
+    }
+
+    // SUPLEMENTOS
+    if (categoriaActual == 3) {
+        // solo básico
+    }
+
+    // 3. guardar en supabase
+    let error;
+
+// EDITAR
+if(productoEditandoId){
+
+    const respuesta =
+    await window.supabaseClient
+        .from('productos')
+        .update(payload)
+        .eq('id', productoEditandoId);
+
+    error = respuesta.error;
+
+}else{
+
+    // NUEVO
+    const respuesta =
+    await window.supabaseClient
+        .from('productos')
+        .insert([payload]);
+
+    error = respuesta.error;
+}
+
+    if (error) {
+        console.log(error);
+        alert("Error al guardar");
+        return;
+    }
+
+    alert("Guardado correctamente");
+
+    limpiar();
+    cargarProductos();
+}
+        /* CARGAR */
+       async function cargarProductos() {
+
+    const { data } = await window.supabaseClient
+        .from('productos')
+        .select('*')
+        .eq('categoria_id', categoriaActual)
+        .order('id', { ascending: false });
+
+    let html = '';
+
+    data.forEach(p => {
+
+        html += `
+        <div class="col-md-4">
+
+            <div class="card product-card">
+                    <div class="d-flex gap-2 flex-wrap mb-2">
+
+    ${
+        p.imagenes?.length > 0
+
+        ? p.imagenes.map(img => `
+
+            <img
+                src="${img}"
+                style="
+                    width:90px;
+                    height:90px;
+                    object-fit:cover;
+                    border-radius:10px;
+                    border:1px solid #ddd;
+                ">
+
+        `).join('')
+
+        : `
+
+            <img
+                src="no-image.png"
+                style="
+                    width:90px;
+                    height:90px;
+                    object-fit:cover;
+                    border-radius:10px;
+                ">
+
+        `
+    }
+
+</div>
+
+                <div class="card-body">
+
+                    <h5>${p.nombre}</h5>
+
+                    <p>$${p.costo}</p>
+
+                    ${p.en_oferta ? '<span class="text-danger">🔥 OFERTA</span>' : ''}
+
+                    <div class="d-flex gap-1">
+
+                        <button class="btn btn-warning btn-sm"
+                         onclick="editarProducto(${p.id})">
+                         ✏️ Editar
+                        </button>
+                        <button class="btn btn-sm ${p.en_oferta ? 'btn-danger' : 'btn-outline-danger'}"
+                        onclick="toggleOferta(${p.id}, ${p.en_oferta})">
+                        ${p.en_oferta ? ' Quitar oferta' : ' Poner oferta'} 
+                        </button> 
+                        <button class="btn btn-danger btn-sm"
+                            onclick="eliminarProducto(${p.id})">
+                            X Eliminar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>`;
+    });
+
+    document.getElementById('productosContainer').innerHTML = html;
+}
+
+        /* EDITAR */
+        async function editarProducto(id) {
+
+            const { data } = await window.supabaseClient
+                .from('productos')
+                .select('*')
+                .eq('id', id)
+                .single();
+
+            productoEditandoId = id;
+
+            nombre.value = data.nombre;
+            descripcion.value = data.descripcion;
+            precio.value = data.costo;
+            talla.value = data.talla;
+            color.value = data.color;
+            genero.value = data.genero;
+            stock.value = data.stock;
+        }
+
+async function toggleOferta(id, estado) {
+
+    const { data, error } = await window.supabaseClient
+        .from('productos')
+        .update({
+            en_oferta: !estado
+        })
+        .eq('id', id)
+        .select('id, en_oferta'); // 👈 importante
+
+    console.log("ACTUALIZADO:", data);
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+    // 🔥 fuerza UI refresh
+    await cargarProductos();
+}
+
+        /* ELIMINAR */
+        async function eliminarProducto(id) {
+            await window.supabaseClient
+                .from('productos')
+                .delete()
+                .eq('id', id);
+
+            cargarProductos();
+        }
+
+        /* LIMPIAR */
+        function limpiar() {
+            nombre.value = '';
+            descripcion.value = '';
+            precio.value = '';
+            talla.value = '';
+            color.value = '';
+            genero.value = '';
+            stock.value = '';
+             filesGlobal = [];
+             productoEditandoId = null;
+
+document.getElementById('previewContainer')
+.innerHTML = '';
+
+document.getElementById('imagenes').value = '';
+        }
+
+    </script>
+
+</body>
+
+</html>
