@@ -473,7 +473,7 @@ async function cargarProductos() {
   
     <img 
       src="${img}" 
-      class="slide ${i === 0 ? 'activo' : ''}"
+      class="product-slide ${i === 0 ? 'activo' : ''}"
     >
 
   `).join("");
@@ -514,7 +514,7 @@ function moverSlide(index, direccion){
 
   const slider = document.getElementById(`slider-${index}`);
 
-  const slides = slider.querySelectorAll(".slide");
+  const slides = slider.querySelectorAll(".product-slide");
 
   let actual = 0;
 
