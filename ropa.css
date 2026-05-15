@@ -1,0 +1,239 @@
+/* =========================
+   SECCIÓN ROPA
+========================= */
+
+#ropa {
+  padding: 0px 8%;
+  background: #fff7fb;
+}
+
+#ropa .title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#ropa .title h2 {
+  font-size: 40px;
+  color: #ff4f8b;
+}
+
+#ropa .title p {
+  color: #666;
+}
+
+/* =========================
+   GRID PC
+========================= */
+
+.ropa-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.product-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  transition: transform .25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* =========================
+   SLIDER IMAGEN
+========================= */
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.product-slide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transition: opacity .3s ease;
+
+  pointer-events: none;
+}
+
+.product-slide.activo {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+ 
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.card-content {
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-content h3 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.card-content p {
+  font-size: 13px;
+  color: #666;
+  min-height: 40px;
+}
+
+.card-content span {
+  font-weight: bold;
+  color: #ff4f8b;
+  margin-top: 5px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1200px) {
+
+  .ropa-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+/* =========================
+   MOBILE CARRUSEL
+========================= */
+
+@media (max-width: 768px) {
+
+  .ropa-grid {
+
+    display: flex;
+    overflow-x: auto;
+
+    gap: 14px;
+
+    scroll-snap-type: x mandatory;
+
+    padding-bottom: 10px;
+
+  }
+
+  /* ocultar scrollbar */
+
+  .ropa-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-card {
+
+    min-width: 190px;
+
+    flex: 0 0 auto;
+
+    scroll-snap-align: start;
+  }
+
+  .slider {
+    height: 220px;
+  }
+
+  .card-content {
+    padding: 12px;
+  }
+
+  .card-content h3 {
+    font-size: 14px;
+  }
+
+  .card-content p {
+    font-size: 12px;
+    min-height: auto;
+  }
+
+  .card-content span {
+    font-size: 14px;
+  }
+
+}
+/* =========================
+   MODAL IMAGEN
+========================= */
+
+.image-modal {
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: .3s ease;
+
+  z-index: 9999;
+}
+
+.image-modal.active {
+
+  opacity: 1;
+  pointer-events: all;
+}
+
+.image-modal img {
+
+  width: 90%;
+  max-width: 600px;
+
+  max-height: 85vh;
+
+  object-fit: contain;
+
+  border-radius: 20px;
+}
+
+.close-modal {
+
+  position: absolute;
+  top: 20px;
+  right: 25px;
+
+  color: white;
+  font-size: 35px;
+
+  cursor: pointer;
+}

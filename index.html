@@ -9,6 +9,7 @@
 
   <!-- Fuente -->
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
 
   <div class="logo">
     <img src="images/logo.png" alt="Fer Santana Logo">
-    <span>Fernanda de Cisneros</span>
+    <span>Fernanda  </span>
   </div>
 
   <!-- BOTON MENU -->
@@ -59,68 +60,92 @@
         <p>
           Descubre ropa deportiva, suplementos y maquillaje
           con un estilo moderno y elegante.
-        </p>
-
+        </p> 
         <a href="#ropa" class="btn">Ver colección</a>
       </div>
     </div>
   </header>
-  <!-- BENEFICIOS -->
-<section class="carousel">
-  
-  <div class="slides">
 
-    <div class="slide">
-      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
-    </div>
 
-    <div class="slide">
-     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
-    </div>
-
-    <div class="slide">
-      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
-    </div>
-     <div class="slide">
-      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
-    </div>
-     <div class="slide">
-      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
-    </div>
-     <div class="slide">
-      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop">
-    </div>
-
+<section class="carousel swiper mySwiper"> 
+  <div class="swiper-wrapper"> 
+    <div class="swiper-slide">
+      <div class="slide-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbI1S7zrSXUqJGEeZJs8KB3zbpYZDe8QoJ6Q&s">
+      </div>
+    </div> 
+    <div class="swiper-slide">
+      <div class="slide-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbI1S7zrSXUqJGEeZJs8KB3zbpYZDe8QoJ6Q&s">
+      </div>
+    </div> 
   </div>
- 
-</section>
-<!-- ROPA -->
-  <section id="ropa">
 
+  <!-- PAGINACIÓN -->
+  <div class="swiper-pagination"></div>  
+</section>
+
+<!-- ROPA -->
+<section id="ropa">
   <div class="title">
     <h2>Ropa Deportiva</h2>
     <p>Diseños modernos para tu mejor versión.</p>
   </div>
 
-  <div class="cards" id="contenedor-productos">
-    <!-- Aquí se cargarán los productos -->
+  <div id="contenedor-productos" class="ropa-grid">
   </div>
-
 </section>
-<section class="new-collection">
 
-  <div class="new-left">
-    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1400&auto=format&fit=crop">
+<section id="suplementos">
+  <div class="title">
+    <h2>Suplementos</h2>
+    <p>Potencia tu rendimiento y recuperación.</p>
   </div>
 
-  <div class="new-right">
+  <div id="contenedor-suplementos" class="suplementos-grid">
+  </div>
+</section>
 
-    <span class="tag">NUEVA COLECCIÓN 2026</span>
+<section id="maquillaje">
+  <div class="title">
+    <h2>Maquillaje</h2>
+    <p>Resalta tu estilo con productos únicos.</p>
+  </div> 
+  <div id="contenedor-maquillaje" class="maquillaje-grid">
+  </div>
+</section>
 
+<section id="accesorios">
+  <div class="title">
+    <h2>Accesorios</h2>
+    <p>Complementos ideales para tu outfit.</p>
+  </div>
+
+  <div id="contenedor-accesorios" class="accesorios-grid">
+  </div>
+</section>
+
+<section id="ofertas">
+  <div class="title">
+    <h2>Ofertas</h2>
+    <p>Productos especiales con descuentos increíbles.</p>
+  </div>
+
+  <div id="contenedor-ofertas" class="ofertas-grid">
+  </div>
+</section>
+<!--
+
+
+<section class="new-collection"> 
+  <div class="new-left">
+    <img src=" ">
+  </div> 
+  <div class="new-right"> 
+    <span class="tag">NUEVA COLECCIÓN 2026</span> 
     <h2>
       Outfit deportivo premium para mujeres con estilo
-    </h2>
-
+    </h2> 
     <p>
       Descubre prendas modernas, cómodas y elegantes
       diseñadas para resaltar tu mejor versión.
@@ -128,99 +153,11 @@
 
     <a href="#ropa" class="btn">
       Comprar ahora
-    </a>
-
-  </div>
-
-</section>
+    </a> 
+  </div> 
+</section> 
+  
  
-  <!-- SUPLEMENTOS -->
-  <section id="suplementos">
-
-    <div class="title">
-      <h2>Suplementos</h2>
-      <p>Impulsa tu energía y rendimiento.</p>
-    </div>
-
-    <div class="cards">
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Proteína Whey</h3>
-          <p>Alta calidad para recuperación muscular.</p>
-          <span>$1,299 MXN</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1579722821273-0f6c8d44362f?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Pre Workout</h3>
-          <p>Máxima energía para tus entrenamientos.</p>
-          <span>$899 MXN</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Vitaminas</h3>
-          <p>Bienestar diario y salud integral.</p>
-          <span>$499 MXN</span>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- MAQUILLAJE -->
-  <section id="maquillaje">
-
-    <div class="title">
-      <h2>Maquillaje</h2>
-      <p>Brilla con elegancia y estilo.</p>
-    </div>
-
-    <div class="cards">
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Kit Beauty</h3>
-          <p>Todo para un look moderno.</p>
-          <span>$1,099 MXN</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Labial Matte</h3>
-          <p>Color intenso y larga duración.</p>
-          <span>$299 MXN</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Paleta Luxury</h3>
-          <p>Tonos modernos y sofisticados.</p>
-          <span>$699 MXN</span>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
   <section class="benefits">
 
   <h2>¿Qué te ofrecemos hoy?</h2>
@@ -299,247 +236,43 @@
   </div>
 
 </section>
-  <!-- FOOTER -->
+ 
+   <--FOOTER -->
   <footer>
     <h3> Fernanda Santana ♥</h3>
     <p>Moda • Fitness • Beauty</p>
   </footer>
-  
-  <script>
-  const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("menu");
+  <!-- MODAL IMAGEN -->
 
-  toggle.addEventListener("click", () => {
-    menu.classList.toggle("active");
-  });
-</script>
-<span class="tooltip">
-  Contáctanos
-</span>
-<a href="https://wa.me/523412408519" class="whatsapp" target="_blank">
+<div class="image-modal" id="imageModal">
+
+  <span class="close-modal" id="closeModal">✕</span>
+
+  <img id="modalImg">
+
+</div>
+  
+ 
+
+<a href="https://wa.me/523412408519"
+   class="whatsapp"
+   target="_blank">
+
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+
 </a>
+
+ <!-- AOS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-<script>
-AOS.init({
-  duration:1000,
-  once:true
-});
-</script>
-<script>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-const productos = [
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  {
-    nombre:"Leggings Pro",
-    precio:"$899 MXN",
-    imagen:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
-  },
-
-  {
-    nombre:"Top Fitness",
-    precio:"$699 MXN",
-    imagen:"https://images.unsplash.com/photo-1506629905607-d9c297d0fbc9?q=80&w=1200&auto=format&fit=crop"
-  },
-
-  {
-    nombre:"Sport Outfit",
-    precio:"$1,299 MXN",
-    imagen:"https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop"
-  }
-
-];
-
-const cards = document.querySelector("#ropa .cards");
-
-cards.innerHTML = "";
-
-productos.forEach(producto => {
-
-  cards.innerHTML += `
-
-    <div class="card" data-aos="zoom-in">
-
-      <img src="${producto.imagen}">
-
-      <div class="card-content">
-
-        <h3>${producto.nombre}</h3>
-
-        <p>Moda deportiva premium.</p>
-
-        <span>${producto.precio}</span>
-
-      </div>
-
-    </div>
-
-  `;
-
-});
-
-</script>
-<script>
-
-window.addEventListener("scroll", () => {
-
-  const nav = document.querySelector("nav");
-
-  if(window.scrollY > 50){
-
-    nav.classList.add("nav-scroll");
-
-  }else{
-
-    nav.classList.remove("nav-scroll");
-
-  }
-
-});
- 
-</script>
-<script>
-
-window.addEventListener("load",()=>{
-
-  const loader=document.querySelector(".loader");
-
-  loader.style.opacity="0";
-
-  setTimeout(()=>{
-
-    loader.style.display="none";
-
-  },8000);
-
-});
-
-</script>
-<script>
-
-const darkBtn = document.getElementById("darkModeBtn");
-
-darkBtn.addEventListener("click",()=>{
-
-  document.body.classList.toggle("dark");
-
-  if(document.body.classList.contains("dark")){
-    darkBtn.innerHTML="☀️";
-  }else{
-    darkBtn.innerHTML="🌙";
-  }
-
-});
-
-</script>
-<script>
-const SUPABASE_URL = "https://rptnbxyerjcwzxflijpm.supabase.co";
-const SUPABASE_KEY = "sb_publishable_6ik7MsO_dx2Jua_lZH5lPg_yl3r4pt_";
-
-const supabaseClient = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-async function cargarProductos() {
-
-  const { data, error } = await supabaseClient
-    .from("productos")
-    .select("*")
-    .eq("activo", true);
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  const contenedor = document.getElementById("contenedor-productos");
-
-  contenedor.innerHTML = "";
-
- data.forEach((producto, index) => {
-
-  const precio = producto.en_oferta && producto.precio_oferta
-    ? producto.precio_oferta
-    : producto.costo;
-
-  const imagenes = producto.imagenes?.length
-    ? producto.imagenes
-    : ["https://via.placeholder.com/300x400?text=Sin+Imagen"];
-
-  const imagenesHTML = imagenes.map((img, i) => `
-  
-    <img 
-      src="${img}" 
-      class="product-slide ${i === 0 ? 'activo' : ''}"
-    >
-
-  `).join("");
-
-  contenedor.innerHTML += `
-  
-    <div class="card">
-
-      <div class="slider" id="slider-${index}">
-        
-        ${imagenesHTML}
-
-        ${
-          imagenes.length > 1
-          ? `
-            <button class="prev" onclick="moverSlide(${index}, -1)">❮</button>
-            <button class="next" onclick="moverSlide(${index}, 1)">❯</button>
-          `
-          : ""
-        }
-
-      </div>
-
-      <div class="card-content">
-        <h3>${producto.nombre}</h3>
-
-        <p>${producto.descripcion || "Sin descripción"}</p>
-
-        <span>$${precio} MXN</span>
-      </div>
-
-    </div>
-
-  `;
-});
-}
-function moverSlide(index, direccion){
-
-  const slider = document.getElementById(`slider-${index}`);
-
-  const slides = slider.querySelectorAll(".product-slide");
-
-  let actual = 0;
-
-  slides.forEach((slide, i) => {
-    if(slide.classList.contains("activo")){
-      actual = i;
-    }
-  });
-
-  slides[actual].classList.remove("activo");
-
-  actual += direccion;
-
-  if(actual >= slides.length){
-    actual = 0;
-  }
-
-  if(actual < 0){
-    actual = slides.length - 1;
-  }
-
-  slides[actual].classList.add("activo");
-}
-
-cargarProductos();
-</script>
+<!-- TU JS -->
+<script src="script.js"></script>
 
 </body>
 </html>

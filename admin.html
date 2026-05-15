@@ -55,6 +55,16 @@
     </div>
 </div>
 
+<!-- ACCESORIOS -->
+<div class="col-md-4">
+    <div class="category-card accesorios"
+        onclick="abrirCategoria(4,'Accesorios')"
+        data-bs-toggle="modal"
+        data-bs-target="#modalProductos">
+        <h3>👜 Accesorios</h3>
+    </div>
+</div>
+
         </div>
     </div>
 
@@ -79,7 +89,10 @@
     <textarea id="descripcion" class="form-control mb-2 campo-general" placeholder="Descripción"></textarea>
 
     <input id="precio" type="number" class="form-control mb-2 campo-general" placeholder="Costo">
+ 
+   
 
+<input id="precioOferta"  type="number"  class="form-control mb-2" placeholder="Precio oferta">
     <input id="stock" type="number" class="form-control mb-2 campo-general" placeholder="Stock">
 
     <!-- SOLO MAQUILLAJE -->
@@ -178,6 +191,12 @@ function ajustarFormulario() {
         document.querySelectorAll('.campo-ropa, .campo-maquillaje')
             .forEach(el => el.classList.add('hidden'));
     }
+    // ACCESORIOS
+if (categoriaActual == 4) {
+
+    document.querySelectorAll('.campo-ropa, .campo-maquillaje')
+        .forEach(el => el.classList.add('hidden'));
+}
 }
 
         /* PREVIEW */
@@ -287,8 +306,8 @@ async function guardarProducto() {
     const nombre = document.getElementById('nombre').value;
     const descripcion = document.getElementById('descripcion').value;
     const costo = document.getElementById('precio').value;
-    const stock = document.getElementById('stock').value;
-
+    const precioOferta = document.getElementById('precioOferta').value;
+    const stock = document.getElementById('stock').value; 
     const talla = document.getElementById('talla').value;
     const color = document.getElementById('color').value;
     const genero = document.getElementById('genero').value;
@@ -319,14 +338,17 @@ if(filesGlobal.length > 0){
 }
 
     // 2. payload
-    let payload = {
-        nombre,
-        descripcion,
-        costo,
-        stock,
-        categoria_id: categoriaActual,
-        en_oferta: false
-    };
+  let payload = {
+    nombre,
+    descripcion, 
+    costo: costo, 
+    precio_oferta:
+      precioOferta || null, 
+    en_oferta:
+      precioOferta ? true : false, 
+    stock, 
+    categoria_id: categoriaActual
+};
 
     // imagen solo si existe
     payload.imagenes = imagenes;

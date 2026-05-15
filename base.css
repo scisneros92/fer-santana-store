@@ -1,0 +1,37 @@
+:root{
+  --pink:#ff4f8b;
+  --pink-dark:#ff2f74;
+  --white:#fff;
+  --text:#333;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Outfit',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:linear-gradient(
+    180deg,
+    #fff7fb,
+    #ffffff,
+    #fff7fb
+  );
+
+  color:var(--text);
+
+  overflow-x:hidden;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
